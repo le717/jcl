@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "jcl"
+version = "1.0.0"
+description = ""
+authors = ["Caleb Ely <le717@users.noreply.github.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pyserial = "^3.4"
+tqdm = "^4.47.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.7.9"
+mypy = "^0.770"
+black = "^19.10b0"
+cx-freeze = "^6.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
