@@ -10,9 +10,9 @@
 
 ## Usage
 
-```
-jcl
-```
+`$ jcl.exe com_port config_file`
+
+Alternatively, drag the configuration file on the exe/Python script and follow the prompts.
 
 
 ## License
