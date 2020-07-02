@@ -1,0 +1,7 @@
+.mypy_cache/
+.vscode/
+build/
+testing/
+__pycache__/
+
+*.txt
