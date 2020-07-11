@@ -73,6 +73,7 @@ def flash_juniper(args: Arguments):
     # Run the loaded config
     # Display a progress bar to help determine if everything is working
     print("Loading new config")
+    config.config_data.append("set chassis alarm management-ethernet link-down ignore")
     for command in tqdm(config.config_data, ascii=True, leave=False):
         juniper.send(command, 0.6).enter_key()
 

@@ -9,8 +9,8 @@ __all__ = ["Config"]
 
 
 class Delimiters(Enum):
-    Comment = "!|#"
-    Command = "\n"
+    Command = r"^\w"
+    NewLine = "\n"
 
 
 @dataclass
@@ -37,7 +37,9 @@ class Config:
         return [line.strip() for line in text if line]
 
     def __strip_comments(self, text: list) -> list:
-        return [line for line in text if match(Delimiters.Comment.value, line) is None]
+        return [
+            line for line in text if match(Delimiters.Command.value, line) is not None
+        ]
 
     def load(self) -> ParserReply:
         # Try to find the given config file
@@ -49,7 +51,7 @@ class Config:
                 f"The Juniper config file could not be found at {fspath(self.config_path)}"  # noqa
             )
 
-        # Well now, it actually exists! The contractor actually _did_ something!
+        # Well now, it actually exists! The contractor actually did something!
         return self.__make_reply(
             True,
             f"Successfully found Juniper config at {fspath(self.config_path)}",  # noqa
@@ -57,7 +59,7 @@ class Config:
 
     def parse(self):
         # Get the file content
-        file_contents = self.config_path.read_text().split(Delimiters.Command.value)
+        file_contents = self.config_path.read_text().split(Delimiters.NewLine.value)
 
         # Clean up and parse out the commands
         file_contents = self.__strip_blanks(file_contents)
